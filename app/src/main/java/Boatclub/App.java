@@ -16,13 +16,13 @@ public class App {
     try {
       Scanner scan = new Scanner(System.in, "utf-8");
       Menu theMenu = new Menu();
-      theMenu.present(scan);
-
-      scan.close();
-    } catch (IOException e) {
-      System.out.println("IO Exception: " + e.getMessage());
-    } catch (Exception error) {
-      System.out.println("Exception: " + error.getMessage());
+      int end = theMenu.present(scan);
+      if (end == 0) {
+        scan.close();
+      }
+    } catch (Exception e) {
+      System.out.println("Exception: " + e.getMessage());
+      e.printStackTrace();
     }
   }
 }

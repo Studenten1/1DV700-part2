@@ -1,23 +1,46 @@
 package Boatclub;
 
+import java.util.ArrayList;
+
 /**
  * This is the Member class.
  */
 public class Member {
   private String name;
-  private int position;
-  private int noOfMoons;
-  private int aphelion;
-  private int perihelion;
+  private String email;
+  private String memberId;
+  ArrayList<Boat> boats = new ArrayList<>();
 
   /**
    * The constructor.
    */
-  public SinglePlanet(String theName, int thePosition, int numberOfMoons, int theAphelion, int thePerihelion) {
+  public Member(String theName) {
     setName(theName);
-    setPosition(thePosition);
-    setNoMoons(numberOfMoons);
-    setAphelion(theAphelion);
-    setPerihelion(thePerihelion);
+  }
+
+  /**
+   * The constructor.
+   */
+  public Member(String theName, String theEmail) {
+    setName(theName);
+    setEmail(theEmail);
+  }
+
+  /**
+   * Sets the name of the member.
+   *
+   * @param theName - (string)
+   */
+  public void setName(String theName) {
+    name = theName;
+  }
+
+  /**
+   * Sets the email of the member.
+   *
+   * @param theEmail - (string)
+   */
+  public void setEmail(String theEmail) {
+    email = theEmail;
   }
 }
