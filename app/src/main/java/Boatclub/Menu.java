@@ -42,6 +42,33 @@ public class Menu {
         default:
           System.out.println("Write a valid number!");
           this.present(scan);
-      }
+    }
+  }
+
+  /**
+   * Prints the menu for creating a new member.
+   *
+   * @param theEmail - (string)
+   */
+  public void create(String theEmail) {
+    email = theEmail;
+  }
+
+  /**
+   * Prints the list of all members.
+   *
+   * @param theEmail - (string)
+   */
+  public void printList(String theEmail) {
+    email = theEmail;
+  }
+
+  /**
+   * Prints the menu for selecting a particular member.
+   *
+   * @param theEmail - (string)
+   */
+  public void select(String theEmail) {
+    email = theEmail;
   }
 }
