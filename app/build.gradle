@@ -67,7 +67,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'assignment1.App'
+    mainClass = 'Boatclub.App'
 }
 
 run {
