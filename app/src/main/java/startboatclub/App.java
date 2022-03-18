@@ -1,4 +1,4 @@
-package Boatclub;
+package startboatclub;
 
 import java.util.Scanner;
 
@@ -17,13 +17,11 @@ public class App {
       List theList = new List();
       theList.load();
 
-      //Present the menu.
+      // Present the menu.
       Scanner scan = new Scanner(System.in, "utf-8");
       Menu theMenu = new Menu();
-      int end = theMenu.present(scan, theList);
-      if (end == 0) {
-        scan.close();
-      }
+      theMenu.present(scan, theList);
+      scan.close();
     } catch (Exception e) {
       System.out.println("Exception: " + e.getMessage());
       e.printStackTrace();

@@ -1,4 +1,4 @@
-package Boatclub;
+package startboatclub;
 
 import java.util.ArrayList;
 
@@ -72,16 +72,6 @@ public class Member {
   }
 
   /**
-   * Creates the id of the member.
-   *
-   * @param theId - (string)
-   */
-  public void createId() {
-    
-    memberId = theId;
-  }
-
-  /**
    * Gets the id of the member.
    *
    * @return memberId - (string)
@@ -93,7 +83,7 @@ public class Member {
   /**
    * Adds a boat to a member.
    *
-   * @param theBoat- (string)
+   * @param theBoat - (object)
    */
   public void addBoat(Boat theBoat) {
     boats.add(theBoat);
@@ -102,9 +92,9 @@ public class Member {
   /**
    * Gets the info text about boats of a member.
    *
-   * @return boats - (object)
+   * @return text - (string)
    */
-  public Object getBoatsText() {
+  public String getBoatsText() {
     String text = "";
     for (int a = 0; a < boats.size(); a++) {
       text = boats.get(a).getText();

@@ -1,10 +1,11 @@
-package Boatclub;
+package startboatclub;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 /**
  * This is the List class.
@@ -17,32 +18,30 @@ public class List {
   /**
    * Loads the data and converts it to a list of objects.
    *
-   * @param scan (object)
-   * @return (int)
    */
   public void load() {
-    try { 
+    try {
       File file = new File("\\registry.data");
-      Scanner scanner = new Scanner(file); 
-      
+      Scanner scanner = new Scanner(file, "utf-8");
+
       while (scanner.hasNext()) {
-        String str = scanner.nextLine (); 
+        String str = scanner.nextLine();
         String[] array = str.split(":");
         // If the text string starts with the word Member.
-        if(array[0].equals("MEMBER")) {
+        if (array[0].equals("MEMBER")) {
           if (array.length == 3) {
             String name = array[1];
             String id = array[2];
             currentMember = new Member(name);
             currentMember.addId(id);
-            this.addMember(currentMember);
+            members.add(currentMember);
           } else {
             String name = array[1];
             String email = array[2];
             String id = array[3];
             currentMember = new Member(name, email);
             currentMember.addId(id);
-            this.addMember(currentMember);
+            members.add(currentMember);
           }
           // If the text string starts with the word Boat.
         } else if (array[0].equals("BOAT")) {
@@ -73,54 +72,65 @@ public class List {
           }
         }
       }
-      scanner.close ();
-    } catch (IOException e) { e. printStackTrace (); }
+      scanner.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
    * Overwrites the data and saves the file.
    *
-   * @param scan (object)
-   * @return (int)
    */
   public void save() {
-    try { 
+    try {
       int arrayLength = members.size();
       for (int i = 0; i < arrayLength; i++) {
         currentMember = members.get(i);
         String str = currentMember.getText();
-        text.append(str + "\n"); 
+        text.append(str + "\n");
         text.append(currentMember.getBoatsText());
       }
       File outFile = new File("\\registry.data");
-      PrintWriter printer = new PrintWriter(outFile);
-      printer.print(text); 
+      PrintWriter printer = new PrintWriter(outFile, "utf-8");
+      printer.print(text);
       printer.close();
-    } catch (IOException e) { e. printStackTrace (); }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
-   * Adds a new member to the list.
+   * Creates a unique id and adds a new member to the list.
    *
-   * @param scan (object)
-   * @return (int)
+   * @param newMember (object)
    */
   public void addMember(Member newMember) {
-    members.add(newMember);
+    UUID random = UUID.randomUUID();
+    String id = random.toString();
+    for (Member m : members) {
+      String otherId = m.getId();
+      if (id.equals(otherId)) {
+        this.addMember(newMember);
+      } else {
+        newMember.addId(id);
+        members.add(newMember);
+      }
+    }
   }
 
   /**
    * Checks if the submitted email is unique.
    *
-   * @param email (string)
+   * @param theEmail (string)
    * @return (boolean)
    */
   public boolean checkEmail(String theEmail) {
-    for(Member m: members) {
+    for (Member m : members) {
       String email = m.getEmail();
       if (theEmail.equals(email)) {
         return false;
-      } 
+      }
     }
     return true;
   }

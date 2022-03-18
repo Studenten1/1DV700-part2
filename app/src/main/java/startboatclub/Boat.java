@@ -1,4 +1,4 @@
-package Boatclub;
+package startboatclub;
 
 /**
  * This is the Boat class.
@@ -134,7 +134,7 @@ public class Boat {
     power = optionTwo;
   }
 
-   /**
+  /**
    * Gets the info text of the boat.
    *
    * @return text - (string)
@@ -144,13 +144,16 @@ public class Boat {
       String text = "BOAT:" + this.getName() + ":" + this.getType() + ":" + this.getLength();
       return text;
     } else if (this.getDepth() == 0) {
-      String text = "BOAT:" + this.getName() + ":" + this.getType() + ":" + this.getLength() + ":" + this.getPower();
+      String text = "BOAT:" + this.getName() + ":" + this.getType() + ":" + this.getLength() + ":"
+          + this.getPower();
       return text;
     } else if (this.getPower() == 0) {
-      String text = "BOAT:" + this.getName() + ":" + this.getType() + ":" + this.getLength() + ":" + this.getDepth();
+      String text = "BOAT:" + this.getName() + ":" + this.getType() + ":" + this.getLength() + ":"
+          + this.getDepth();
       return text;
     } else {
-      String text = "BOAT:" + this.getName() + ":" + this.getType() + ":" + this.getLength() + ":" + this.getDepth() + ":" + this.getPower();
+      String text = "BOAT:" + this.getName() + ":" + this.getType() + ":" + this.getLength() + ":"
+          + this.getDepth() + ":" + this.getPower();
       return text;
     }
   }
