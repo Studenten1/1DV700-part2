@@ -21,7 +21,7 @@ public class List {
    */
   public void load() {
     try {
-      File file = new File("\\registry.data");
+      File file = new File("C:\\Users\\meyer\\Documents\\1DV502\\assignment-4\\app\\src\\main\\java\\startboatclub\\registry.data");
       Scanner scanner = new Scanner(file, "utf-8");
 
       while (scanner.hasNext()) {
@@ -91,7 +91,7 @@ public class List {
         text.append(str + "\n");
         text.append(currentMember.getBoatsText());
       }
-      File outFile = new File("\\registry.data");
+      File outFile = new File("C:\\Users\\meyer\\Documents\\1DV502\\assignment-4\\app\\src\\main\\java\\startboatclub\\registry.data");
       PrintWriter printer = new PrintWriter(outFile, "utf-8");
       printer.print(text);
       printer.close();
@@ -110,13 +110,13 @@ public class List {
     String id = random.toString();
     for (Member m : members) {
       String otherId = m.getId();
-      if (id.equals(otherId)) {
-        this.addMember(newMember);
-      } else {
-        newMember.addId(id);
-        members.add(newMember);
-      }
+      while (id.equals(otherId)) {
+        random = UUID.randomUUID();
+        id = random.toString();
+      } 
     }
+    newMember.addId(id);
+    members.add(newMember);
   }
 
   /**

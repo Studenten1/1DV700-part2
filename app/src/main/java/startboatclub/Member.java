@@ -109,7 +109,7 @@ public class Member {
    * @return text - (string)
    */
   public String getText() {
-    if (this.getEmail() == "undefined") {
+    if (this.getEmail() == null) {
       String text = "MEMBER:" + this.getName() + ":" + this.getId();
       return text;
     } else {
