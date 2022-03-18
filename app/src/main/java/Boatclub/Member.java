@@ -9,7 +9,7 @@ public class Member {
   private String name;
   private String email;
   private String memberId;
-  ArrayList<Boat> boats = new ArrayList<>();
+  private ArrayList<Boat> boats = new ArrayList<>();
 
   /**
    * The constructor.
@@ -36,11 +36,95 @@ public class Member {
   }
 
   /**
+   * Gets the name of the member.
+   *
+   * @return name - (string)
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
    * Sets the email of the member.
    *
    * @param theEmail - (string)
    */
   public void setEmail(String theEmail) {
     email = theEmail;
+  }
+
+  /**
+   * Gets the email of the member.
+   *
+   * @return email - (string)
+   */
+  public String getEmail() {
+    return email;
+  }
+
+  /**
+   * Adds the id of the member.
+   *
+   * @param theId - (string)
+   */
+  public void addId(String theId) {
+    memberId = theId;
+  }
+
+  /**
+   * Creates the id of the member.
+   *
+   * @param theId - (string)
+   */
+  public void createId() {
+    
+    memberId = theId;
+  }
+
+  /**
+   * Gets the id of the member.
+   *
+   * @return memberId - (string)
+   */
+  public String getId() {
+    return memberId;
+  }
+
+  /**
+   * Adds a boat to a member.
+   *
+   * @param theBoat- (string)
+   */
+  public void addBoat(Boat theBoat) {
+    boats.add(theBoat);
+  }
+
+  /**
+   * Gets the info text about boats of a member.
+   *
+   * @return boats - (object)
+   */
+  public Object getBoatsText() {
+    String text = "";
+    for (int a = 0; a < boats.size(); a++) {
+      text = boats.get(a).getText();
+      text += "\n";
+    }
+    return text;
+  }
+
+  /**
+   * Gets the info text of the member.
+   *
+   * @return text - (string)
+   */
+  public String getText() {
+    if (this.getEmail() == "undefined") {
+      String text = "MEMBER:" + this.getName() + ":" + this.getId();
+      return text;
+    } else {
+      String text = "MEMBER:" + this.getName() + ":" + this.getEmail() + ":" + this.getId();
+      return text;
+    }
   }
 }

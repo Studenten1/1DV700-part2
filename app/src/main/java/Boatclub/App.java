@@ -13,9 +13,14 @@ public class App {
    */
   public static void main(String[] args) {
     try {
+      // Load the list.
+      List theList = new List();
+      theList.load();
+
+      //Present the menu.
       Scanner scan = new Scanner(System.in, "utf-8");
       Menu theMenu = new Menu();
-      int end = theMenu.present(scan);
+      int end = theMenu.present(scan, theList);
       if (end == 0) {
         scan.close();
       }
