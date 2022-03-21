@@ -14,6 +14,7 @@ public class List {
   private StringBuilder text = new StringBuilder();
   private Member currentMember;
   private ArrayList<Member> members = new ArrayList<>();
+  private String path = "C:\\Users\\meyer\\Documents\\1DV502\\assignment-4\\app\\src\\main\\java\\startboatclub\\registry.data";
 
   /**
    * Loads the data and converts it to a list of objects.
@@ -21,7 +22,7 @@ public class List {
    */
   public void load() {
     try {
-      File file = new File("C:\\Users\\meyer\\Documents\\1DV502\\assignment-4\\app\\src\\main\\java\\startboatclub\\registry.data");
+      File file = new File(path);
       Scanner scanner = new Scanner(file, "utf-8");
 
       while (scanner.hasNext()) {
@@ -91,7 +92,7 @@ public class List {
         text.append(str + "\n");
         text.append(currentMember.getBoatsText());
       }
-      File outFile = new File("C:\\Users\\meyer\\Documents\\1DV502\\assignment-4\\app\\src\\main\\java\\startboatclub\\registry.data");
+      File outFile = new File(path);
       PrintWriter printer = new PrintWriter(outFile, "utf-8");
       printer.print(text);
       printer.close();
@@ -115,7 +116,7 @@ public class List {
         random = UUID.randomUUID();
         first = random.toString();
         id = first.substring(0, 6);
-      } 
+      }
     }
     newMember.addId(id);
     members.add(newMember);
@@ -157,7 +158,8 @@ public class List {
       return null;
     } else if (1 <= choice && choice <= nrOfElements) {
       Member thisMember = members.get((choice - 1));
-      System.out.println("\nName: " + thisMember.getName() + "\nEmail: " + thisMember.getEmail() + "\nID: " + thisMember.getId());
+      System.out.println(
+          "\nName: " + thisMember.getName() + "\nEmail: " + thisMember.getEmail() + "\nID: " + thisMember.getId());
       return thisMember;
     } else {
       System.out.println("\nError! Enter a valid number!");

@@ -65,7 +65,9 @@ public class Boat {
    */
   public void setType(String theType) {
     String thisType = theType.toLowerCase();
-    if (thisType.equals("sailboat") || thisType.equals("motorboat") || thisType.equals("motorsailer") || thisType.equals("canoe")) {
+    if (thisType.equals("sailboat") || thisType.equals("motorboat")) {
+      type = thisType;
+    } else if (thisType.equals("motorsailer") || thisType.equals("canoe")) {
       type = thisType;
     } else {
       throw new Error("The boat type is not entered correctly!");

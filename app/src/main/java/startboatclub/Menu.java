@@ -9,11 +9,12 @@ public class Menu {
   /**
    * Prints the start menu and handles the input.
    *
-   * @param scan - (object)
+   * @param scan    - (object)
    * @param theList - (object)
    */
   public void present(Scanner scan, List theList) {
-    System.out.print("\nWelcome to our Boat Club! Select one of the following options for editing our list of members:");
+    System.out
+        .print("\nWelcome to our Boat Club! Select one of the following options for editing our list of members:");
     System.out.print("\n1. Create a new member\n2. List the members");
     System.out.print("\n0. Quit the application\nWrite your choice here(0-2): ");
 
@@ -45,7 +46,7 @@ public class Menu {
   /**
    * Handles the options for creating a new member.
    *
-   * @param scan - (object)
+   * @param scan    - (object)
    * @param theList - (object)
    */
   public void create(Scanner scan, List theList) {
@@ -71,12 +72,14 @@ public class Menu {
   /**
    * Prints another menu and handles the input.
    *
-   * @param scan - (object)
-   * @param theList - (object)
+   * @param scan     - (object)
+   * @param theList  - (object)
    * @param selected - (object)
    */
   public void printMenu(Scanner scan, List theList, Member selected) {
-    System.out.print("\nYour choices:\n1. Delete the member. \n2. Add a new boat to the member. \n3. Select a boat and se the detailed info about the boat.\nEnter your choice as a number(use 0 to return to the main menu): ");
+    System.out.print("\nYour choices:\n1. Delete the member. \n2. Add a new boat to the member.");
+    System.out.print("\n3. Select a boat and se the detailed info about the boat.");
+    System.out.print("\nEnter your choice as a number(use 0 to return to the main menu): ");
     int choice = scan.nextInt();
     scan.nextLine();
     switch (choice) {
@@ -100,13 +103,14 @@ public class Menu {
   /**
    * Handles the options for a boat.
    *
-   * @param scan - (object)
+   * @param scan      - (object)
    * @param theMember - (object)
-   * @param theBoat - (object)
+   * @param theBoat   - (object)
    */
   public void options(Scanner scan, Member theMember, Boat theBoat) {
     if (theBoat != null) {
-      System.out.print("\nYour choices:\n1. Delete the boat.\nEnter your choice as a number(use 0 to return to the main menu): ");
+      System.out.print(
+          "\nYour choices:\n1. Delete the boat.\nEnter your choice as a number(use 0 to return to the main menu): ");
       int choice = scan.nextInt();
       scan.nextLine();
       if (choice == 1) {

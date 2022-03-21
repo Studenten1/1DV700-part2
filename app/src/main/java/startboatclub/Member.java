@@ -108,7 +108,7 @@ public class Member {
     int length = scan.nextInt();
     scan.nextLine();
     System.out.print("\nEnter the depth of the boat(optional, enter 0 to skip): ");
-    int depth = scan.nextInt();
+    final int depth = scan.nextInt();
     scan.nextLine();
     System.out.print("\nEnter the power of the boat(optional, enter 0 to skip): ");
     int power = scan.nextInt();
@@ -169,7 +169,7 @@ public class Member {
    */
   public Boat printListOfBoats(Scanner scan) {
     int number = 1;
-    for (Boat b: boats) {
+    for (Boat b : boats) {
       System.out.println(number + ". " + b.getName());
       number++;
     }
@@ -182,7 +182,8 @@ public class Member {
       return null;
     } else if (1 <= choice && choice <= nrOfElements) {
       Boat thisBoat = boats.get((choice - 1));
-      System.out.println("\nName: " + thisBoat.getName() + "\nType: " + thisBoat.getType() + "\nLength: " + thisBoat.getLength() + "\nDepth: " + thisBoat.getDepth() + "\nPower: " + thisBoat.getPower());
+      System.out.println("\nName: " + thisBoat.getName() + "\nType: " + thisBoat.getType() + "\nLength: "
+          + thisBoat.getLength() + "\nDepth: " + thisBoat.getDepth() + "\nPower: " + thisBoat.getPower());
       return thisBoat;
     } else {
       System.out.println("\nError! Enter a valid number!");
