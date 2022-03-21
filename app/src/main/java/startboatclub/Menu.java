@@ -29,7 +29,7 @@ public class Menu {
         if (selectedMember == null) {
           this.present(scan, theList);
         } else {
-          this.printMenu(scan, selectedMember);
+          this.printMenu(scan, theList, selectedMember);
           this.present(scan, theList);
         }
         break;
@@ -71,21 +71,47 @@ public class Menu {
   /**
    * Prints another menu and handles the input.
    *
+   * @param scan - (object)
+   * @param theList - (object)
+   * @param selected - (object)
    */
-  public void printMenu(Scanner scan, Member selected) {
+  public void printMenu(Scanner scan, List theList, Member selected) {
     System.out.print("\nYour choices:\n1. Delete the member. \n2. Add a new boat to the member. \n3. Select a boat and se the detailed info about the boat.\nEnter your choice as a number(use 0 to return to the main menu): ");
     int choice = scan.nextInt();
     scan.nextLine();
-    int nrOfElements = members.size();
-    if (choice == 0) {
-      return 0;
-    } else if (1 <= choice && choice <= nrOfElements) {
-      Member thisMember = members.get((choice - 1));
-      System.out.println(thisMember.getText() + "\n" + thisMember.getBoatsText());
-      return 0;
-    } else {
-      System.out.println("\nError! Enter a valid number!");
-      return 0;
+    switch (choice) {
+      case 1:
+        theList.deleteMember(selected);
+        break;
+      case 2:
+        selected.addNewBoat(scan);
+        break;
+      case 3:
+        Boat selectedBoat = selected.printListOfBoats(scan);
+        this.options(scan, selected, selectedBoat);
+        break;
+      case 0:
+        break;
+      default:
+        System.out.println("Write a valid number!");
+    }
+  }
+
+  /**
+   * Handles the options for a boat.
+   *
+   * @param scan - (object)
+   * @param theMember - (object)
+   * @param theBoat - (object)
+   */
+  public void options(Scanner scan, Member theMember, Boat theBoat) {
+    if (theBoat != null) {
+      System.out.print("\nYour choices:\n1. Delete the boat.\nEnter your choice as a number(use 0 to return to the main menu): ");
+      int choice = scan.nextInt();
+      scan.nextLine();
+      if (choice == 1) {
+        theMember.deleteBoat(theBoat);
+      }
     }
   }
 }

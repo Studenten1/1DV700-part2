@@ -157,11 +157,25 @@ public class List {
       return null;
     } else if (1 <= choice && choice <= nrOfElements) {
       Member thisMember = members.get((choice - 1));
-      System.out.println("\n" + thisMember.getName() + "\n" + thisMember.getName());
+      System.out.println("\nName: " + thisMember.getName() + "\nEmail: " + thisMember.getEmail() + "\nID: " + thisMember.getId());
       return thisMember;
     } else {
       System.out.println("\nError! Enter a valid number!");
       return null;
+    }
+  }
+
+  /**
+   * Deletes a member.
+   *
+   * @param member - (object)
+   */
+  public void deleteMember(Member member) {
+    boolean answer = members.remove(member);
+    if (answer) {
+      System.out.println("\nThe selected member is deleted successfully");
+    } else {
+      System.out.println("\nError! Failed to delete member.");
     }
   }
 }

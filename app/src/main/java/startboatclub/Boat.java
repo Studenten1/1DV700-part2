@@ -64,7 +64,12 @@ public class Boat {
    * @param theType - (string)
    */
   public void setType(String theType) {
-    type = theType;
+    String thisType = theType.toLowerCase();
+    if (thisType.equals("sailboat") || thisType.equals("motorboat") || thisType.equals("motorsailer") || thisType.equals("canoe")) {
+      type = thisType;
+    } else {
+      throw new Error("The boat type is not entered correctly!");
+    }
   }
 
   /**

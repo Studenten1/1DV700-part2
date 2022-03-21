@@ -25,6 +25,9 @@ public class App {
     } catch (Exception e) {
       System.out.println("Exception: " + e.getMessage());
       e.printStackTrace();
-    } 
+    } catch (Error error) {
+      System.out.println("Error: " + error.getMessage());
+      error.printStackTrace();
+    }
   }
 }
