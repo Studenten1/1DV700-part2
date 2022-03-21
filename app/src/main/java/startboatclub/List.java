@@ -107,12 +107,14 @@ public class List {
    */
   public void addMember(Member newMember) {
     UUID random = UUID.randomUUID();
-    String id = random.toString();
+    String first = random.toString();
+    String id = first.substring(0, 6);
     for (Member m : members) {
       String otherId = m.getId();
       while (id.equals(otherId)) {
         random = UUID.randomUUID();
-        id = random.toString();
+        first = random.toString();
+        id = first.substring(0, 6);
       } 
     }
     newMember.addId(id);
@@ -133,5 +135,33 @@ public class List {
       }
     }
     return true;
+  }
+
+  /**
+   * Prints a list of the members and returns the selected member.
+   *
+   * @return thisMember - (object)
+   */
+  public Member printListOfMembers(Scanner scan) {
+    int number = 1;
+    for (Member m : members) {
+      System.out.println(number + ". " + m.getName());
+      number++;
+    }
+
+    System.out.print("\nSelect a particular member? Enter their number(enter 0 to return to the main menu): ");
+    int choice = scan.nextInt();
+    scan.nextLine();
+    int nrOfElements = members.size();
+    if (choice == 0) {
+      return null;
+    } else if (1 <= choice && choice <= nrOfElements) {
+      Member thisMember = members.get((choice - 1));
+      System.out.println("\n" + thisMember.getName() + "\n" + thisMember.getName());
+      return thisMember;
+    } else {
+      System.out.println("\nError! Enter a valid number!");
+      return null;
+    }
   }
 }

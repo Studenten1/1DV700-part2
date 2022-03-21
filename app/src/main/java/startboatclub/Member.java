@@ -68,7 +68,11 @@ public class Member {
    * @param theId - (string)
    */
   public void addId(String theId) {
-    memberId = theId;
+    if (theId.length() != 6) {
+      System.out.println("The submitted ID does not contain six characters! Try again");
+    }
+    String thisId = theId.toLowerCase();
+    memberId = thisId;
   }
 
   /**
