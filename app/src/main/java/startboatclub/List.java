@@ -11,7 +11,7 @@ import java.util.UUID;
  * This is the List class.
  */
 public class List {
-  private StringBuilder text = new StringBuilder();
+  private StringBuilder text;
   private Member currentMember;
   private ArrayList<Member> members = new ArrayList<>();
   private String path = "C:\\Users\\meyer\\Documents\\1DV502\\assignment-4\\app\\src\\main\\java\\startboatclub\\registry.data";
@@ -44,11 +44,11 @@ public class List {
             currentMember.addId(id);
             members.add(currentMember);
           }
-          // If the text string starts with the word Boat.
+        // If the text string starts with the word Boat.
         } else if (array[0].equals("BOAT")) {
-            String name = array[1];
-            String length = array[3];
-            int theLength = Integer.parseInt(length);
+          String name = array[1];
+          String length = array[3];
+          int theLength = Integer.parseInt(length);
           if (array.length == 4) {
             Canoe thisCanoe = new Canoe(name, theLength);
             currentMember.addBoat(thisCanoe);
@@ -71,6 +71,7 @@ public class List {
       }
       scanner.close();
     } catch (IOException e) {
+      System.out.println("IOException: " + e.getMessage());
       e.printStackTrace();
     }
   }
@@ -81,6 +82,7 @@ public class List {
    */
   public void save() {
     try {
+      text = new StringBuilder();
       int arrayLength = members.size();
       for (int i = 0; i < arrayLength; i++) {
         currentMember = members.get(i);
@@ -93,6 +95,7 @@ public class List {
       printer.print(text);
       printer.close();
     } catch (IOException e) {
+      System.out.println("IOException: " + e.getMessage());
       e.printStackTrace();
     }
   }

@@ -90,7 +90,7 @@ public class Menu {
         selected.addNewBoat(scan);
         break;
       case 3:
-        Boat selectedBoat = selected.printListOfBoats(scan,selected);
+        Boat selectedBoat = selected.printListOfBoats(scan, selected);
         this.options(scan, selected, selectedBoat);
         break;
       case 0:

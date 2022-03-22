@@ -1,5 +1,8 @@
 package startboatclub;
 
+/**
+ * This is the Canoe class.
+ */
 public class Canoe extends Boat {
   private String type = "canoe";
 
@@ -22,6 +25,12 @@ public class Canoe extends Boat {
   @Override
   public String getText() {
     String text = "BOAT:" + super.getName() + ":" + this.getType() + ":" + super.getLength();
+    return text;
+  }
+
+  @Override
+  public String getBoatInfo() {
+    String text = "Name: " + super.getName() + "\nType: " + this.getType() + "\nLength: " + super.getLength();
     return text;
   }
 }

@@ -102,12 +102,13 @@ public class Member {
   public void addNewBoat(Scanner scan) {
     System.out.print("\nEnter the name of the boat: ");
     String name = scan.nextLine();
-   
+
     System.out.print("\nEnter the length of the boat: ");
     int length = scan.nextInt();
     scan.nextLine();
 
-    System.out.print("\nWhich boat type?\n1. Sailboat\n2. Motorboat\n3. Motorsailer\n4. Canoe\nEnter the number of the boat type: ");
+    System.out.print(
+        "\nWhich boat type?\n1. Sailboat\n2. Motorboat\n3. Motorsailer\n4. Canoe\nEnter the number of the boat type: ");
     int typeNumber = scan.nextInt();
     scan.nextLine();
     switch (typeNumber) {
@@ -135,7 +136,7 @@ public class Member {
         int thePower = scan.nextInt();
         scan.nextLine();
         Motorsailer motorsailer = new Motorsailer(name, length, theDepth, thePower);
-        boats.add(motorsailer );
+        boats.add(motorsailer);
         System.out.println("\nThe new motorsailer was added successfully");
         break;
       case 4:
@@ -195,8 +196,8 @@ public class Member {
   /**
    * Prints a list of the boats and returns the selected boat.
    *
-   * @param scan - (object)
-   * @param themember - (object)
+   * @param scan      - (object)
+   * @param theMember - (object)
    * @return thisBoat - (object)
    */
   public Boat printListOfBoats(Scanner scan, Member theMember) {
@@ -215,7 +216,7 @@ public class Member {
       return null;
     } else if (1 <= choice && choice <= nrOfElements) {
       Boat thisBoat = boats.get((choice - 1));
-      System.out.println(thisBoat.getText());
+      System.out.println(thisBoat.getBoatInfo());
       return thisBoat;
     } else {
       System.out.println("\nError! Enter a valid number!");

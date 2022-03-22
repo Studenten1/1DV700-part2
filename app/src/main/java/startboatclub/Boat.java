@@ -52,4 +52,6 @@ public abstract class Boat {
   }
 
   public abstract String getText();
+
+  public abstract String getBoatInfo();
 }

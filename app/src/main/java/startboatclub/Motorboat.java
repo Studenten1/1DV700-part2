@@ -1,5 +1,8 @@
 package startboatclub;
 
+/**
+ * This is the Motorboat class.
+ */
 public class Motorboat extends Boat {
   private String type = "motorboat";
   private int power = 0;
@@ -42,6 +45,12 @@ public class Motorboat extends Boat {
   @Override
   public String getText() {
     String text = "BOAT:" + super.getName() + ":" + this.getType() + ":" + super.getLength() + ":" + this.getPower();
+    return text;
+  }
+
+  @Override
+  public String getBoatInfo() {
+    String text = "Name: " + super.getName() + "\nType: " + this.getType() + "\nLength: " + super.getLength() + "\nPower: " + this.getPower();
     return text;
   }
 }

@@ -1,5 +1,8 @@
 package startboatclub;
 
+/**
+ * This is the Sailboat class.
+ */
 public class Sailboat extends Boat {
   private String type = "sailboat";
   private int depth = 0;
@@ -42,6 +45,12 @@ public class Sailboat extends Boat {
   @Override
   public String getText() {
     String text = "BOAT:" + super.getName() + ":" + this.getType() + ":" + super.getLength() + ":" + this.getDepth();
+    return text;
+  }
+
+  @Override
+  public String getBoatInfo() {
+    String text = "Name: " + super.getName() + "\nType: " + this.getType() + "\nLength: " + super.getLength() + "\nDepth: " + this.getDepth();
     return text;
   }
 }
