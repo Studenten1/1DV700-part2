@@ -44,7 +44,7 @@ public class List {
             currentMember.addId(id);
             members.add(currentMember);
           }
-        // If the text string starts with the word Boat.
+          // If the text string starts with the word Boat.
         } else if (array[0].equals("BOAT")) {
           String name = array[1];
           String length = array[3];

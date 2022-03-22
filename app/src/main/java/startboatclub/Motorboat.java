@@ -50,7 +50,8 @@ public class Motorboat extends Boat {
 
   @Override
   public String getBoatInfo() {
-    String text = "Name: " + super.getName() + "\nType: " + this.getType() + "\nLength: " + super.getLength() + "\nPower: " + this.getPower();
+    String text = "Name: " + super.getName() + "\nType: " + this.getType() + "\nLength: " + super.getLength()
+        + "\nPower: " + this.getPower();
     return text;
   }
 }

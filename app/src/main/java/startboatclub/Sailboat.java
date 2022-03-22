@@ -50,7 +50,8 @@ public class Sailboat extends Boat {
 
   @Override
   public String getBoatInfo() {
-    String text = "Name: " + super.getName() + "\nType: " + this.getType() + "\nLength: " + super.getLength() + "\nDepth: " + this.getDepth();
+    String text = "Name: " + super.getName() + "\nType: " + this.getType() + "\nLength: " + super.getLength()
+        + "\nDepth: " + this.getDepth();
     return text;
   }
 }
