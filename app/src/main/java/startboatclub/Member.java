@@ -102,34 +102,50 @@ public class Member {
   public void addNewBoat(Scanner scan) {
     System.out.print("\nEnter the name of the boat: ");
     String name = scan.nextLine();
-    System.out.print("\nEnter the type of the boat: ");
-    String type = scan.nextLine();
+   
     System.out.print("\nEnter the length of the boat: ");
     int length = scan.nextInt();
     scan.nextLine();
-    System.out.print("\nEnter the depth of the boat(optional, enter 0 to skip): ");
-    final int depth = scan.nextInt();
-    scan.nextLine();
-    System.out.print("\nEnter the power of the boat(optional, enter 0 to skip): ");
-    int power = scan.nextInt();
-    scan.nextLine();
 
-    if (depth == 0 && power == 0) {
-      Boat newBoat = new Boat(name, type, length);
-      boats.add(newBoat);
-      System.out.println("\nThe new boat is added successfully");
-    } else if (depth == 0) {
-      Boat newBoat = new Boat(name, type, length, power);
-      boats.add(newBoat);
-      System.out.println("\nThe new boat is added successfully");
-    } else if (power == 0) {
-      Boat newBoat = new Boat(name, type, length, depth);
-      boats.add(newBoat);
-      System.out.println("\nThe new boat is added successfully");
-    } else {
-      Boat newBoat = new Boat(name, type, length, depth, power);
-      boats.add(newBoat);
-      System.out.println("\nThe new boat is added successfully");
+    System.out.print("\nWhich boat type?\n1. Sailboat\n2. Motorboat\n3. Motorsailer\n4. Canoe\nEnter the number of the boat type: ");
+    int typeNumber = scan.nextInt();
+    scan.nextLine();
+    switch (typeNumber) {
+      case 1:
+        System.out.print("\nEnter the depth of the boat: ");
+        int depth = scan.nextInt();
+        scan.nextLine();
+        Sailboat sailboat = new Sailboat(name, length, depth);
+        boats.add(sailboat);
+        System.out.println("\nThe new sailboat was added successfully");
+        break;
+      case 2:
+        System.out.print("\nEnter the engine power in horse powers: ");
+        int power = scan.nextInt();
+        scan.nextLine();
+        Motorboat motorboat = new Motorboat(name, length, power);
+        boats.add(motorboat);
+        System.out.println("\nThe new motorboat was added successfully");
+        break;
+      case 3:
+        System.out.print("\nEnter the depth of the boat: ");
+        int theDepth = scan.nextInt();
+        scan.nextLine();
+        System.out.print("\nEnter the engine power in horse powers: ");
+        int thePower = scan.nextInt();
+        scan.nextLine();
+        Motorsailer motorsailer = new Motorsailer(name, length, theDepth, thePower);
+        boats.add(motorsailer );
+        System.out.println("\nThe new motorsailer was added successfully");
+        break;
+      case 4:
+        Canoe canoe = new Canoe(name, length);
+        boats.add(canoe);
+        System.out.println("\nThe new canoe was added successfully");
+        break;
+      default:
+        System.out.println("\nError! Enter a vaild number!");
+        break;
     }
   }
 
@@ -141,8 +157,7 @@ public class Member {
   public String getBoatsText() {
     String text = "";
     for (int a = 0; a < boats.size(); a++) {
-      text = boats.get(a).getText();
-      text += "\n";
+      text += (boats.get(a).getText() + "\n");
     }
     return text;
   }
@@ -163,12 +178,30 @@ public class Member {
   }
 
   /**
+   * Returns detailed info about a member to the user.
+   *
+   * @return text - (string)
+   */
+  public String getMemberInfo() {
+    if (this.getEmail() == null) {
+      String text = "\nName: " + this.getName() + "\nID: " + this.getId();
+      return text;
+    } else {
+      String text = "\nName: " + this.getName() + "\nEmail: " + this.getEmail() + "\nID: " + this.getId();
+      return text;
+    }
+  }
+
+  /**
    * Prints a list of the boats and returns the selected boat.
    *
-   * @return thisMember - (object)
+   * @param scan - (object)
+   * @param themember - (object)
+   * @return thisBoat - (object)
    */
-  public Boat printListOfBoats(Scanner scan) {
+  public Boat printListOfBoats(Scanner scan, Member theMember) {
     int number = 1;
+    System.out.println("\nThis is a list of the boats belonging to " + theMember.getName() + ":");
     for (Boat b : boats) {
       System.out.println(number + ". " + b.getName());
       number++;
@@ -182,8 +215,7 @@ public class Member {
       return null;
     } else if (1 <= choice && choice <= nrOfElements) {
       Boat thisBoat = boats.get((choice - 1));
-      System.out.println("\nName: " + thisBoat.getName() + "\nType: " + thisBoat.getType() + "\nLength: "
-          + thisBoat.getLength() + "\nDepth: " + thisBoat.getDepth() + "\nPower: " + thisBoat.getPower());
+      System.out.println(thisBoat.getText());
       return thisBoat;
     } else {
       System.out.println("\nError! Enter a valid number!");

@@ -46,30 +46,26 @@ public class List {
           }
           // If the text string starts with the word Boat.
         } else if (array[0].equals("BOAT")) {
+            String name = array[1];
+            String length = array[3];
+            int theLength = Integer.parseInt(length);
           if (array.length == 4) {
-            String name = array[1];
-            String type = array[2];
-            String length = array[3];
-            int theLength = Integer.parseInt(length);
-            Boat thisBoat = new Boat(name, type, theLength);
-            currentMember.addBoat(thisBoat);
+            Canoe thisCanoe = new Canoe(name, theLength);
+            currentMember.addBoat(thisCanoe);
           } else if (array.length == 5) {
-            String name = array[1];
-            String type = array[2];
-            String length = array[3];
-            int optionOne = Integer.parseInt(array[4]);
-            int theLength = Integer.parseInt(length);
-            Boat thisBoat = new Boat(name, type, theLength, optionOne);
-            currentMember.addBoat(thisBoat);
+            int option = Integer.parseInt(array[4]);
+            if (option > 9) {
+              Motorboat motorboat = new Motorboat(name, theLength, option);
+              currentMember.addBoat(motorboat);
+            } else {
+              Sailboat sailboat = new Sailboat(name, theLength, option);
+              currentMember.addBoat(sailboat);
+            }
           } else if (array.length == 6) {
-            String name = array[1];
-            String type = array[2];
-            String length = array[3];
-            int optionOne = Integer.parseInt(array[4]);
-            int optionTwo = Integer.parseInt(array[5]);
-            int theLength = Integer.parseInt(length);
-            Boat thisBoat = new Boat(name, type, theLength, optionOne, optionTwo);
-            currentMember.addBoat(thisBoat);
+            int depth = Integer.parseInt(array[4]);
+            int power = Integer.parseInt(array[5]);
+            Motorsailer motorsailer = new Motorsailer(name, theLength, depth, power);
+            currentMember.addBoat(motorsailer);
           }
         }
       }
@@ -145,6 +141,7 @@ public class List {
    */
   public Member printListOfMembers(Scanner scan) {
     int number = 1;
+    System.out.println("\nThis is a list of the members in the Boat Club: ");
     for (Member m : members) {
       System.out.println(number + ". " + m.getName());
       number++;
@@ -158,8 +155,7 @@ public class List {
       return null;
     } else if (1 <= choice && choice <= nrOfElements) {
       Member thisMember = members.get((choice - 1));
-      System.out.println(
-          "\nName: " + thisMember.getName() + "\nEmail: " + thisMember.getEmail() + "\nID: " + thisMember.getId());
+      System.out.println(thisMember.getMemberInfo());
       return thisMember;
     } else {
       System.out.println("\nError! Enter a valid number!");

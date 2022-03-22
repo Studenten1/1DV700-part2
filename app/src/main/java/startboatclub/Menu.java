@@ -50,10 +50,10 @@ public class Menu {
    * @param theList - (object)
    */
   public void create(Scanner scan, List theList) {
-    System.out.print("\n Enter your name: ");
+    System.out.print("\n Enter the member's name: ");
     String name = scan.nextLine();
 
-    System.out.print("\n Enter your email(optional, enter q to skip this part): ");
+    System.out.print("\n Enter the member's email(optional, enter q to skip this part): ");
     String email = scan.nextLine();
     if (email.equals("q") || email.equals("Q")) {
       Member createMember = new Member(name);
@@ -90,7 +90,7 @@ public class Menu {
         selected.addNewBoat(scan);
         break;
       case 3:
-        Boat selectedBoat = selected.printListOfBoats(scan);
+        Boat selectedBoat = selected.printListOfBoats(scan,selected);
         this.options(scan, selected, selectedBoat);
         break;
       case 0:
