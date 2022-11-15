@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Menu {
     private String lmPath = "./src/main/java/assignment1/lm222sp.txt";
+    private String thePath = "./src/main/java/assignment1/encryptedMessageTransposition.txt";
     private StringBuilder text;
 
   /**
@@ -46,7 +47,7 @@ public class Menu {
     if (firstAnswer == 1 && secondAnswer == 1) {
         Substitution method = new Substitution(secretKey, name);
         String encryptedText = method.getEncryptedText();
-        saveEncryptedTextFile(encryptedText);
+        saveEncryptedTextFile(encryptedText, lmPath);
         System.out.println("The path to the processed text file is " + lmPath);
     } else if (firstAnswer == 1 && secondAnswer == 2) {
         Substitution method = new Substitution(secretKey, name);
@@ -54,10 +55,13 @@ public class Menu {
         System.out.println("The decrypted message is:\n" + decryptedText);
     } else if (firstAnswer == 2 && secondAnswer == 2) {
         Transposition method = new Transposition(secretKey, name);
-        method.decryptText();
+        String decryptedText = method.getDecryptedText();
+        System.out.println("The decrypted message is:\n" + decryptedText);
     } else if (firstAnswer == 2 && secondAnswer == 1) {
         Transposition method = new Transposition(secretKey, name);
-        method.encryptText();
+        String encryptedText = method.getEncryptedText();
+        saveEncryptedTextFile(encryptedText, thePath);
+        System.out.println("The path to the processed text file is " + thePath);
     } else {
         System.out.println("Write a valid number!");
         this.start(scan);
@@ -70,11 +74,11 @@ public class Menu {
    * Overwrites the data and saves the file.
    *
    */
-  public void saveEncryptedTextFile(String encryptedText) {
+  public void saveEncryptedTextFile(String encryptedText, String path) {
     try {
       text = new StringBuilder();
       text.append("\n");
-      File outFile = new File(lmPath);
+      File outFile = new File(path);
       PrintWriter printer = new PrintWriter(outFile, "utf-8");
       printer.println("***************************************************************************************************");
       printer.println("*                                                                                                 *");
@@ -96,7 +100,7 @@ public class Menu {
    *
    */
   public void testDecryption() {
-    Substitution method = new Substitution("mh225wd.txt");
+    Substitution method = new Substitution("nc222hk.txt");
     String decryptedTextAttempts = method.getDecryptedTextsMethod();
     System.out.println(decryptedTextAttempts);
   }
