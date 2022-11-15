@@ -22,7 +22,9 @@ public class App {
       // Present the menu.
       Scanner scan = new Scanner(System.in, "utf-8");
       Menu theMenu = new Menu();
-      theMenu.start(scan);
+      /* 
+      theMenu.start(scan);*/
+      theMenu.testDecryption();
       scan.close();
     } catch (Exception e) {
       System.out.println("Exception: " + e.getMessage());

@@ -40,7 +40,7 @@ public class Menu {
         secretKey = scan.nextLine();
     }
 
-    System.out.print("\nEnter the name of the text file to process: ");
+    System.out.print("\nEnter the name of the text file to process (for example: message.txt): ");
     String name = scan.nextLine();
     
     if (firstAnswer == 1 && secondAnswer == 1) {
@@ -50,7 +50,8 @@ public class Menu {
         System.out.println("The path to the processed text file is " + lmPath);
     } else if (firstAnswer == 1 && secondAnswer == 2) {
         Substitution method = new Substitution(secretKey, name);
-        method.decryptText();
+        String decryptedText = method.getDecryptedText();
+        System.out.println("The decrypted message is:\n" + decryptedText);
     } else if (firstAnswer == 2 && secondAnswer == 2) {
         Transposition method = new Transposition(secretKey, name);
         method.decryptText();
@@ -89,4 +90,15 @@ public class Menu {
       e.printStackTrace();
     }
   }
+
+  /**
+   * Test decryption.
+   *
+   */
+  public void testDecryption() {
+    Substitution method = new Substitution("mh225wd.txt");
+    String decryptedTextAttempts = method.getDecryptedTextsMethod();
+    System.out.println(decryptedTextAttempts);
+  }
+
 }
