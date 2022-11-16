@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Menu {
     private String lmPath = "./src/main/java/assignment1/lm222sp.txt";
     private String thePath = "./src/main/java/assignment1/encryptedMessageTransposition.txt";
+    private String anotherPath = "./src/main/java/assignment1/messageEncrypted.txt";
     private StringBuilder text;
 
   /**
@@ -60,8 +61,8 @@ public class Menu {
     } else if (firstAnswer == 2 && secondAnswer == 1) {
         Transposition method = new Transposition(secretKey, name);
         String encryptedText = method.getEncryptedText();
-        saveEncryptedTextFile(encryptedText, thePath);
-        System.out.println("The path to the processed text file is " + thePath);
+        saveEncryptedTextFile(encryptedText, anotherPath);
+        System.out.println("The path to the processed text file is " + anotherPath);
     } else {
         System.out.println("Write a valid number!");
         this.start(scan);
