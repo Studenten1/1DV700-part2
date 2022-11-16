@@ -145,7 +145,7 @@ public class Substitution {
   public StringBuilder getCipher() {
     StringBuilder alphabet = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
     // My guess
-    StringBuilder cipher = new StringBuilder("defghijkl-nopqrs-uvwx-z-bc");
+    StringBuilder cipher = new StringBuilder("fcpevqkzg-trayon-jdlwhbxsi");
     // Random
     for (int a = 0; a < cipher.length(); a++) {
       if (cipher.charAt(a) != '-') {

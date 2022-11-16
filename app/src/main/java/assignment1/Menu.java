@@ -100,7 +100,7 @@ public class Menu {
    *
    */
   public void testDecryption() {
-    Substitution method = new Substitution("nc222hk.txt");
+    Substitution method = new Substitution("ez222eq.txt");
     String decryptedTextAttempts = method.getDecryptedTextsMethod();
     System.out.println(decryptedTextAttempts);
   }

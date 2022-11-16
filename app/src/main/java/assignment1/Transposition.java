@@ -3,18 +3,21 @@ package assignment1;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.UUID;
 
 public class Transposition {
     protected String SECRET_KEY;
+    private ArrayList<String> rows = new ArrayList<>();
     private final String alphabet = "abcdefghijklmnopqrstuvwxyz";
     private StringBuilder plainText = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
     private StringBuilder cipherText;
     private String textPath = "./src/main/java/assignment1/";
-    String encryptedText = "";
     String myName = "Linda Meyer";
     String decryptedText = "";
+    String encryptedMessage = "";
   
     /**
      * The constructor.
@@ -22,7 +25,6 @@ public class Transposition {
     public Transposition(String theKey, String theTextFile) {
       SECRET_KEY = theKey.toLowerCase();
       textPath = textPath.concat(theTextFile);
-      setCipherText();
     }
   
     /**
@@ -30,36 +32,6 @@ public class Transposition {
      */
     public Transposition(String theTextFile) {
       textPath = textPath.concat(theTextFile);
-    }
-  
-    /**
-     * Sets the ciphertext.
-     *
-     */
-    public void setCipherText() {
-      cipherText = new StringBuilder();
-      for (int a = 0; a < SECRET_KEY.length(); a++) {
-          cipherText.append(SECRET_KEY.charAt(a));
-          int count = 0;
-          for (int i = 0; i < cipherText.length(); i++) {
-              if (cipherText.charAt(i) == SECRET_KEY.charAt(a)) {
-                  count++;
-              }
-          }
-          
-          if (count == 2) {
-              cipherText.deleteCharAt(cipherText.length() - 1);
-          }
-      }
-  
-      for (int b = 0; b < cipherText.length(); b++) {
-          for (int c = 0; c < plainText.length(); c++) {
-              if (plainText.charAt(c) == cipherText.charAt(b)) {
-                  plainText.deleteCharAt(c);
-              }
-          }
-      }
-      cipherText.append(plainText);
     }
   
     /**
@@ -71,17 +43,18 @@ public class Transposition {
       try {
         File file = new File(textPath);
         Scanner scanner = new Scanner(file, "utf-8");
+        String message = "";
         while (scanner.hasNext()) {
-          String str = scanner.nextLine();
-          encryptedText += (getEncryption(str) + "\n    ");
+          message += scanner.nextLine();
         }
-        encryptedText += ("\n    " + getEncryption(myName) + "\n");
+        message += (" " + myName);
+        encryptedMessage = getEncryption(message);
         scanner.close();
       } catch (IOException e) {
         System.out.println("IOException: " + e.getMessage());
         e.printStackTrace();
       }
-      return encryptedText;
+      return encryptedMessage;
     }
   
     /**
@@ -170,25 +143,71 @@ public class Transposition {
      */
     public String getEncryption(String str) {
       String encryptedText = "";
-      for (int a = 0; a < str.length(); a++) {
-        char character = str.charAt(a);
-        String letter = String.valueOf(character);
-        if (str.charAt(a) == ' ') {
-          encryptedText += " ";
-        } else if (str.charAt(a) == '?' || str.charAt(a) == '!' || str.charAt(a) == ',' || str.charAt(a) == '.') {
-          encryptedText += str.charAt(a);
-        } else if (alphabet.indexOf(letter.toLowerCase()) == -1) {
-          encryptedText += str.charAt(a);
-        } else {
-          int index = alphabet.indexOf(letter.toLowerCase());
-          char lowerCaseLetter = cipherText.charAt(index);
-          if (alphabet.indexOf(letter) == -1) {
-            encryptedText += String.valueOf(lowerCaseLetter).toUpperCase();
-          } else {
-            encryptedText += lowerCaseLetter;
+      ArrayList<Integer> indexInAlphabet = new ArrayList<>();
+      int[] sequence = new int[SECRET_KEY.length()];
+      for (int a = 0; a < SECRET_KEY.length(); a++) {
+        indexInAlphabet.add(alphabet.indexOf(SECRET_KEY.charAt(a)));
+      }
+      int count = 1;
+      for (int b = 0; b < alphabet.length(); b++) {
+        for (int c = 0; c < indexInAlphabet.size(); c++) {
+          if (indexInAlphabet.get(c) == b) {
+            sequence[c] = count;
+            count++;
           }
         }
       }
+
+      int nrOfColumns = SECRET_KEY.length();
+      int nrOfRows = (int)Math.ceil(str.length() / nrOfColumns);
+      for (int i = 0; i < nrOfRows; i++) {
+        if (i == (nrOfRows - 1)) {
+          int nrOfStars = str.length() - (nrOfRows * nrOfColumns);
+          String lastRow = str.substring(i * nrOfColumns, str.length() - 1);
+          String stars = "";
+          while (stars.length() < nrOfStars) {
+            stars += "*";
+          }
+          lastRow += stars;
+          rows.add(lastRow);
+        } else {
+          rows.add(str.substring(i * nrOfColumns, ((i + 1) * nrOfColumns)));
+        }
+      }
+
+      String word = "";
+      count = 1;
+      ArrayList<String> words = new ArrayList<>();
+
+      for (int m = 0; m < nrOfColumns; m++) {
+        for (int n = 0; n < rows.size(); n++) {
+          word += rows.get(n).charAt(m);
+        }
+        words.add(word);
+        word = "";
+      }
+
+      for (int z = 0; z < nrOfColumns; z++) {
+        if (sequence[z] == count) {
+          encryptedText += (words.get(0) + " ");
+        } else if (sequence[z] == (count + 1)) {
+          encryptedText += (words.get(count) + " ");
+        } else if (sequence[z] == (count + 2)) {
+          encryptedText += (words.get(count + 1) + " ");
+        } else if (sequence[z] == (count + 3)) {
+          encryptedText += (words.get(count + 2) + " ");
+        } else if (sequence[z] == (count + 4)) {
+          encryptedText += (words.get(count + 3) + " ");
+        } else if (sequence[z] == (count + 5)) {
+          encryptedText += (words.get(count + 4) + " ");
+        } else if (sequence[z] == (count + 6)) {
+          encryptedText += (words.get(count + 5) + " ");
+        } else {
+          encryptedText += (words.get(count + 6) + " ");
+        }
+      }
+
+      System.out.print(words);
       return encryptedText;
     }
   
