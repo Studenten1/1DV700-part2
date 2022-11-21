@@ -20,8 +20,11 @@ public class App {
     try {
       // Present the menu.
       Scanner scan = new Scanner(System.in, "utf-8");
+      /* 
       Menu theMenu = new Menu();
-      theMenu.start(scan);
+      theMenu.start(scan);*/
+      HashTests tests = new HashTests();
+      tests.printUniformityTestArray();
       scan.close();
     } catch (Exception e) {
       System.out.println("Exception: " + e.getMessage());

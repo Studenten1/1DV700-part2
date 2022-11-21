@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 public class HashTests {
   private ArrayList<Integer> uniformityTestArray = new ArrayList<>();
-  StringBuilder letterNumber = new StringBuilder("abcdefghijklmnopqrstuvwxyz123456789");
+  private StringBuilder letterNumber = new StringBuilder("abcdefghijklmnopqrstuvwxyz123456789");
+  private HashFunction newHashFunction;
 
   public HashTests () {
+    newHashFunction = new HashFunction();
   }
 
   public String getRandomInput(){
@@ -19,6 +21,12 @@ public class HashTests {
     return randomInput;
   }
   
-  public void getHashCode(String input){
+  public void printUniformityTestArray(){
+    for (int a = 0; a < 4000; a++) {
+      String randomInput = getRandomInput();
+      int hashCode = newHashFunction.getHashCode(randomInput);
+      uniformityTestArray.add(hashCode);
+    }
+    System.out.print(uniformityTestArray);
   } 
 }
