@@ -1,6 +1,0 @@
-Hello! This is a message about nothing at all. 
-I'm just testing that the encryption method works as it should. This is a new sentence. 
-This is another new sentence. Furthermore, I wonder if it is possible to decrypt 
-this message without the right key. Since each character may have up to 256 possible values, 
-I believe that it is quite difficult to crack the encryption. 
-Can you read this message? Congratulations, you found the right key!
