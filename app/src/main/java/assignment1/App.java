@@ -21,9 +21,9 @@ public class App {
     try {
       // Present the menu.
       Scanner scan = new Scanner(System.in, "utf-8");
-      /* 
       Menu theMenu = new Menu();
-      theMenu.start(scan);*/
+      theMenu.start(scan);
+      /* 
       HashTests tests = new HashTests();
       ArrayList<Integer> values = tests.getUniformityTestArray();
       System.out.println("The result is: " + tests.getUniformityDistributionResult(values, 4000));
@@ -31,9 +31,9 @@ public class App {
       ArrayList<Integer> arrayOfValues = tests.getUniformityTestArrayForSimilarInput();
       System.out.println("The result (this time for similiar input strings) is: " + tests.getUniformityDistributionResult(arrayOfValues, 1200));
 
-      /* 
       //Test that the hash function is not a secure hash function.
-      tests.printInputStringsAndHashValues();*/
+      tests.printInputStringsAndHashValues();
+      */
       scan.close();
     } catch (Exception e) {
       System.out.println("Exception: " + e.getMessage());
