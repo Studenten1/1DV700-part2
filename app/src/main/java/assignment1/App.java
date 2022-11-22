@@ -4,6 +4,7 @@
 
 package assignment1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -24,7 +25,15 @@ public class App {
       Menu theMenu = new Menu();
       theMenu.start(scan);*/
       HashTests tests = new HashTests();
-      tests.printUniformityTestArray();
+      ArrayList<Integer> values = tests.getUniformityTestArray();
+      System.out.println("The result is: " + tests.getUniformityDistributionResult(values, 4000));
+
+      ArrayList<Integer> arrayOfValues = tests.getUniformityTestArrayForSimilarInput();
+      System.out.println("The result (this time for similiar input strings) is: " + tests.getUniformityDistributionResult(arrayOfValues, 1200));
+
+      /* 
+      //Test that the hash function is not a secure hash function.
+      tests.printInputStringsAndHashValues();*/
       scan.close();
     } catch (Exception e) {
       System.out.println("Exception: " + e.getMessage());
