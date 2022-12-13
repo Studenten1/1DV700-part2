@@ -3,6 +3,11 @@ package assignment1;
 import java.util.Scanner;
 
 public class Menu {
+  private HashFunction newHashFunction;
+
+  public Menu () {
+    newHashFunction = new HashFunction();
+  }
 
   /**
    * Prints the start menu and handles the input.
@@ -16,8 +21,7 @@ public class Menu {
     System.out.print("\nPlease submit the input: ");
 
     String input = scan.nextLine();
-    HashFunction hashFunction = new HashFunction();
-    int hashCode = hashFunction.getHashCode(input);
+    int hashCode = newHashFunction.getHashCode(input);
     System.out.println(hashCode);
   }
 }

@@ -22,7 +22,10 @@ public class App {
       // Present the menu.
       Scanner scan = new Scanner(System.in, "utf-8");
       Menu theMenu = new Menu();
-      theMenu.start(scan);
+      for (int a = 0; a < 100; a++) {
+        theMenu.start(scan);
+      }
+      
       /* 
       HashTests tests = new HashTests();
       ArrayList<Integer> values = tests.getUniformityTestArray();
